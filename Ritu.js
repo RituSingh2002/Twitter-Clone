@@ -27,7 +27,8 @@ app.use(session({
       checkPeriod: 86400000 // prune expired entries every 24h
     }),
     resave: true,
-    secret: "bbq chips"
+    secret: "bbq chips",
+    saveUninitialized: false
 }))
 
 // Routes
