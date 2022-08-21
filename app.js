@@ -7,7 +7,7 @@ const bodyParser = require("body-parser")
 const mongoose = require("./database");
 const session = require("express-session");
 const MemoryStore = require('memorystore')(session)
-const server = app.listen(port || process.env.PORT, () => console.log("Server listening on port " + port));
+const server = app.listen(process.env.PORT || port, () => console.log("Server listening on port " + port));
 const io = require("socket.io")(server, { pingTimeout: 60000 });
 
 app.set("view engine", "pug");
