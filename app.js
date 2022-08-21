@@ -16,20 +16,20 @@ app.set("views", "views");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// app.use(session({
-//     secret: "bbq chips",
-//     resave: true,
-//     saveUninitialized: false
-// }))
 app.use(session({
-    cookie: { maxAge: 86400000 },
-    store: new MemoryStore({
-      checkPeriod: 86400000 // prune expired entries every 24h
-    }),
-    resave: true,
     secret: "bbq chips",
+    resave: true,
     saveUninitialized: false
 }))
+// app.use(session({
+//     cookie: { maxAge: 86400000 },
+//     store: new MemoryStore({
+//       checkPeriod: 86400000 // prune expired entries every 24h
+//     }),
+//     resave: true,
+//     secret: "bbq chips",
+//     saveUninitialized: false
+// }))
 
 // Routes
 const loginRoute = require('./routes/loginRoutes');
