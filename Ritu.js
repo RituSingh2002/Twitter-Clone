@@ -6,7 +6,7 @@ const path = require('path')
 const bodyParser = require("body-parser")
 const mongoose = require("./database");
 const session = require("express-session");
-
+const MemoryStore = require('memorystore')(session)
 const server = app.listen(port, () => console.log("Server listening on port " + port));
 const io = require("socket.io")(server, { pingTimeout: 60000 });
 
@@ -16,10 +16,18 @@ app.set("views", "views");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// app.use(session({
+//     secret: "bbq chips",
+//     resave: true,
+//     saveUninitialized: false
+// }))
 app.use(session({
-    secret: "bbq chips",
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
     resave: true,
-    saveUninitialized: false
+    secret: "bbq chips"
 }))
 
 // Routes
