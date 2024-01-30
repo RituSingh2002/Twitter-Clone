@@ -10,7 +10,7 @@ class Database {
     }
 
     connect() {
-        mongoose.connect("mongodb+srv://Ritu:<password>@cluster0.qi2hwt0.mongodb.net/?retryWrites=true&w=majority")
+        mongoose.connect("mongodb+srv://Ritu:123@cluster0.qi2hwt0.mongodb.net/?retryWrites=true&w=majority")
         .then(() => {
             console.log("database connection successful");
         })
